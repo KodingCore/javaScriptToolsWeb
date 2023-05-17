@@ -1,0 +1,91 @@
+
+/*********SETVARS*********SETVARS***********SETVARS***********SETVARS************/
+/*******SETVARS**********SETVARS************SETVARS***********SETVARS************/
+
+$family1: 'Fjalla One', sans-serif;
+$family2: 'Nunito', sans-serif;
+$family3: 'Playfair Display', serif;
+$family4: 'Prompt', sans-serif;
+$sizeTitle1: 3.6rem;
+$sizeTitle2: 2.8rem;
+$sizeTitle3: 2.5rem;
+$sizeTitle4: 1.8rem;
+$size-text: 1.5rem;
+$color-middle: #FEA854;
+$color-dark: #300000;
+$color-light: #eef1ff;
+
+
+/*********KEYFRAMES*********KEYFRAMES***********KEYFRAMES***********KEYFRAMES************/
+/*******KEYFRAMES**********KEYFRAMES************KEYFRAMES***********KEYFRAMES************/
+
+@mixin animate($animation, $duration, $method, $times) {
+    animation: $animation $duration $method $times;
+}
+
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+}
+html{
+    
+    @keyframes bottomSlide {
+        0% {
+            border-image: linear-gradient(to right, #EDB976 0%, transparent 50%) 1;
+        }
+    
+        25% {
+            border-image: linear-gradient(to right, #EDB976 0%, #EDB976 25%, transparent 100%) 1;
+        }
+    
+        50% {
+            border-image: linear-gradient(to right, transparent 0%, #EDB976 15%, #EDB976 40%, transparent 100%) 1;
+        }
+    
+        75% {
+            border-image: linear-gradient(to right, transparent 0%, #EDB976 25%, #EDB976 75%, transparent 100%) 1;
+        }
+        
+    }
+}
+
+
+/*************************************************************************************************/
+/*************************************************************************************************/
+body {
+
+
+    color: $color-dark;
+    font-family: $family4;
+    background-color: $color-light;
+    height: 100vh;
+    width: 100vh;
+
+    header {
+        height: 100px;
+        width: 100vw;
+        background-color: $color-light;
+        text-align: center;
+        padding: 0.5rem 0;
+
+        .header-container {
+            .mark {
+                h1 {
+                    animation: fadeIn 3s , bottomSlide 1s, lightSpeedInLeft 1s;
+                    animation-fill-mode:forwards;
+                    margin: 0.5rem;
+                    border-bottom: 2px solid;
+                    border-image: linear-gradient(to right, transparent, #EDB976, transparent) 1;
+                }
+
+                nav {
+                    ul {
+                        display: flex;
+                        justify-content: space-evenly;
+                    }
+                }
+            }
+        }
+    }
+}
