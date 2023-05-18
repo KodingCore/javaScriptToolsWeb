@@ -2,7 +2,7 @@
 //import * as dayjs from 'dayjs'
 
 window.addEventListener('DOMContentLoaded', function(){
-    
+    setInterval(callToolsListeners, 1);
 });
 
 
@@ -11,26 +11,32 @@ let isInit = false;
 let toggleXkey = true;
 let toggleCkey = true;
 let toggleVkey = true;
+let onePress = true;
 
 function callToolsListeners(){
 
     if(!isInit){
-
+        
         isInit = true;
     }else if(isInit){
-
-        $(document).keypress(function(event){
+        
+        $(document).keyup(function(event){
             
-            if(event.code === "keyX"){
+            if(event.key === "x" && onePress == true){
+                onePress = false;
                 overLineEmptyLinks(toggleXkey =! toggleXkey);
             }
-            else if(event.code === "keyC"){
+            else if(event.key === "c" && onePress == true){
+                onePress = false;
                 columsDrawer(toggleCkey =! toggleCkey);
             }
-            else if(event.code === "keyV"){
+            else if(event.key === "v" && onePress == true){
+                onePress = false;
                 viewportSizeViewer(toggleVkey =! toggleVkey);
             }
+            
         })
+        onePress = true;
     }
 }
 
@@ -50,11 +56,24 @@ function viewportSizeViewer(boolTog){
     }
 }
 
-function columsDrawer(boolTog){
-    if(boolTog){
+let initColumnsDrawer = true;
+let overviewDraw;
+let columnNow;
 
-    }else if(!boolTog){
+function columnsDrawer(boolTog) {
+  if (initColumnsDrawer) {
+    initColumnsDrawer = false;
+    overviewDraw = $("<div class='divOverDraw'></div>").appendTo("body");
 
-    }
+    for (let i = 0; i < 12; i++) {
+        columnNow = $("<div class='divOverColumn'></div>").appendTo(overviewDraw);
+        columnNow.css({"left": i*100/12 + "%"});
+      }
+  }
+
+  if (boolTog) {
+    boolTog = !boolTog;
+  } else if (!boolTog) {
+    boolTog = !boolTog;
+  }
 }
-
